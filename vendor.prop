@@ -86,6 +86,21 @@ vendor.audio.feature.compr_voip.enable=false
 vendor.voice.path.for.pcm.voip=false
 
 # Bluetooth
+bluetooth.hardware.power.operating_voltage_mv=3300
+bluetooth.device.class_of_device=90,2,12
+bluetooth.profile.asha.central.enabled?=true
+bluetooth.profile.a2dp.source.enabled?=true
+bluetooth.profile.avrcp.target.enabled?=true
+bluetooth.profile.bas.client.enabled?=true
+bluetooth.profile.gatt.enabled?=true
+bluetooth.profile.hfp.ag.enabled?=true
+bluetooth.profile.hid.device.enabled?=true
+bluetooth.profile.hid.host.enabled?=true
+bluetooth.profile.map.server.enabled?=true
+bluetooth.profile.opp.enabled?=true
+bluetooth.profile.pan.nap.enabled?=true
+bluetooth.profile.pan.panu.enabled?=true
+bluetooth.profile.pbap.server.enabled?=true
 persist.bluetooth.a2dp_offload.disabled=false
 persist.vendor.bluetooth.drop_power=true
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aac-aptx-aptxhd-ldac
@@ -128,22 +143,24 @@ persist.vendor.dpm.nsrm.bkg.evt=3955
 persist.vendor.dpmhalservice.enable=1
 
 # Display
+debug.sf.enable_egl_image_tracker=1
+debug.sf.auto_latch_unsignaled=1
 debug.sdm.support_writeback=0
+debug.sf.enable_transaction_tracing=false
 debug.sf.use_phase_offsets_as_durations=1
-debug.sf.late.sf.duration=15666666
-debug.sf.late.app.duration=16666666
-debug.sf.early.sf.duration=15666666
-debug.sf.early.app.duration=16666666
-debug.sf.earlyGl.sf.duration=15666666
-debug.sf.earlyGl.app.duration=16666666
+debug.sf.late.sf.duration=10500000
+debug.sf.late.app.duration=16600000
+debug.sf.early.sf.duration=16600000
+debug.sf.early.app.duration=16600000
+debug.sf.earlyGl.sf.duration=16600000
+debug.sf.earlyGl.app.duration=16600000
 debug.sf.enable_hwc_vds=0
 debug.force_no_blanking=true
 debug.sf.predict_hwc_composition_strategy=0
-debug.sf.latch_unsignaled=1
 debug.force_no_blanking=true
 ro.surface_flinger.protected_contents=true
 debug.sf.disable_client_composition_cache=1
-debug.sf.enable_gl_backpressure=1
+debug.sf.disable_gl_backpressure=1
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.hwui.render_ahead=20
@@ -172,6 +189,10 @@ vendor.display.enable_force_split=1
 debug.hwui.use_hint_manager=true
 debug.hwui.target_cpu_time_percent=30
 debug.sf.treat_170m_as_sRGB=1
+vendor.display.override_doze_mode=1
+ro.config.avoid_gfx_accel=true
+ro.surface_flinger.enable_layer_caching=true
+debug.sf.layer_caching_active_layer_timeout_ms=500
 
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp

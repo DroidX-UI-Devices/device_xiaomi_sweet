@@ -91,16 +91,12 @@ BOARD_HAVE_QCOM_FM := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 LOC_HIDL_VERSION := 4.0
 
-# Compression
-PRODUCT_FS_COMPRESSION := 1
-
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MANIFEST_FILE += hardware/qcom-caf/sm8150/media/conf_files/sm6150/c2_manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(DEVICE_PATH)/configs/hidl/device_framework_matrix.xml \
-    $(DEVICE_PATH)/configs/hidl/xiaomi_framework_compatibility_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
 
 ODM_MANIFEST_SKUS += sweet
@@ -123,7 +119,7 @@ TARGET_KERNEL_ADDITIONAL_FLAGS := AS=llvm-as AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-
 TARGET_KERNEL_CLANG_COMPILE := true
 KERNEL_SUPPORTS_LLVM_TOOLS := true
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sweet
-TARGET_KERNEL_CONFIG := vendor/sweet_user_defconfig
+TARGET_KERNEL_CONFIG := sweet_defconfig
 TARGET_KERNEL_CLANG_VERSION := playground
 TARGET_KERNEL_CLANG_PATH := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-playground
 
@@ -154,13 +150,6 @@ else
 BOARD_BOOTIMG_HEADER_VERSION := 1
 endif
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
-
-# LiveDisplay
-ifneq ("$(wildcard hardware/lineage/livedisplay)", "")
-    SOONG_CONFIG_NAMESPACES += livedisplay
-    SOONG_CONFIG_livedisplay += enabled
-    SOONG_CONFIG_livedisplay_enabled := true
-endif
 
 # Media
 TARGET_USES_ION := true
@@ -214,11 +203,10 @@ BOARD_USES_METADATA_PARTITION := true
 TARGET_BOARD_PLATFORM := sm6150
 
 # Power
-TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/power/power-mode.cpp
+TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/configs/power/power-mode.cpp
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
-TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
@@ -244,6 +232,7 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # Sepolicy
 TARGET_SEPOLICY_DIR := msmsteppe
 include device/qcom/sepolicy_vndr-legacy-um/SEPolicy.mk
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SELINUX_IGNORE_NEVERALLOWS := true
 

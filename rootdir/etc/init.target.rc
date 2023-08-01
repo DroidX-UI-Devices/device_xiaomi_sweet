@@ -60,7 +60,6 @@ on init
 on fs
     mount_all --early /vendor/etc/fstab.qcom
 
-    exec u:r:vendor_toolbox:s0 root audio bluetooth graphics media net_raw system vendor_rfs vendor_rfs_shared -- /vendor/bin/toybox_vendor find /mnt/vendor/persist -type d -exec /vendor/bin/toybox_vendor setfattr -x security.sehash {} \;
     restorecon_recursive /mnt/vendor/persist
     mkdir /mnt/vendor/persist/data 0700 system system
     mkdir /mnt/vendor/persist/audio 0755 system system
@@ -107,6 +106,9 @@ on property:sys.boot_completed=1
 
     # Enable ZRAM on boot_complete
     swapon_all /vendor/etc/fstab.zram
+
+    # Enable suspend to RAM
+    write /sys/power/mem_sleep "s2idle"
 
     # Runtime fs tuning
     write /sys/block/sda/queue/nr_requests 128
