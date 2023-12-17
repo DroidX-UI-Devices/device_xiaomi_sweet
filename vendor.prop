@@ -110,12 +110,18 @@ persist.vendor.qcom.bluetooth.enable.splita2dp=true
 persist.vendor.qcom.bluetooth.scram.enabled=true
 persist.vendor.qcom.bluetooth.soc=cherokee
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
+persist.vendor.btstack.enable.twsplus=true
+persist.vendor.btstack.enable.twsplussho=true
+persist.vendor.bt.a2dp.hal.implementation=true
+persist.vendor.bt.a2dp.aac_whitelist=false
+persist.vendor.btstack.enable.lpa=true
 ro.bluetooth.a2dp_offload.supported=true
 ro.vendor.bluetooth.wipower=false
 vendor.qcom.bluetooth.soc=cherokee
 
 # Camera
 camera.disable_zsl_mode=1
+persist.vendor.camera.perflock.enable=0 
 
 # Dalvik
 dalvik.vm.systemuicompilerfilter=speed
@@ -136,6 +142,8 @@ dalvik.vm.dex2oat-filter=speed
 dalvik.vm.dex2oat-threads=8
 dalvik.vm.dex2oat64.enabled=true
 
+# Pre-Rendering
+ro.vendor.perf.scroll_opt=true
 
 # DPM
 persist.vendor.dpm.feature=1
@@ -159,6 +167,9 @@ debug.force_no_blanking=true
 debug.sf.predict_hwc_composition_strategy=0
 debug.force_no_blanking=true
 ro.surface_flinger.protected_contents=true
+ro.surface_flinger.set_idle_timer_ms=4000
+ro.surface_flinger.set_touch_timer_ms=4000
+ro.surface_flinger.set_display_power_timer_ms=1000
 debug.sf.disable_client_composition_cache=1
 debug.sf.disable_gl_backpressure=1
 ro.hardware.egl=adreno
@@ -189,10 +200,14 @@ vendor.display.enable_force_split=1
 debug.hwui.use_hint_manager=true
 debug.hwui.target_cpu_time_percent=30
 debug.sf.treat_170m_as_sRGB=1
-vendor.display.override_doze_mode=1
-ro.config.avoid_gfx_accel=true
 ro.surface_flinger.enable_layer_caching=true
 debug.sf.layer_caching_active_layer_timeout_ms=500
+vendor.display.override_doze_mode=1
+ro.surface_flinger.set_idle_timer_ms=4000
+ro.surface_flinger.set_touch_timer_ms=4000
+ro.surface_flinger.set_display_power_timer_ms=1000
+ro.surface_flinger.use_content_detection_for_refresh_rate=true
+ro.config.avoid_gfx_accel=true
 
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/frp
@@ -201,7 +216,6 @@ ro.frp.pst=/dev/block/bootdevice/by-name/frp
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
-persist.vendor.qti.telephony.vt_cam_interface=2
 
 # Fling
 ro.min.fling_velocity=160 
@@ -223,7 +237,7 @@ ro.vendor.display.sensortype=2
 ro.vendor.histogram.enable=true
 ro.vendor.bcbc.enable=true
 vendor.display.disable_metadata_dynamic_fps=1
-
+debug.sf.frame_rate_multiple_threshold=120
 
 # Fluence
 ro.qc.sdk.audio.fluencetype=none
